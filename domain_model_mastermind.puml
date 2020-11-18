@@ -1,0 +1,75 @@
+@startuml "Mastermind Domain Model"
+	class Mastermind
+	class Board
+	class Player
+	class Turn
+
+	class MakerPlayer
+	class BreakerPlayer
+
+	class Combination
+	class ProposeCombination
+	class SecretCombination
+
+	class Check
+	class Result
+
+	class Position
+	Class Color
+	Class Red
+	Class Blue
+	Class Yellow
+	Class Green
+	Class Orange
+	Class Purple
+
+	Class Goal
+
+	Class Winner
+
+	Mastermind "2" *--> Player
+	Mastermind *--> Board
+	Mastermind *--> Turn
+	Turn "2" --> Player
+
+	Combination <|-- SecretCombination
+	Combination <|-- ProposeCombination
+	Combination <|-- Result
+
+	SecretCombination "0..10" *--> Check
+	SecretCombination -->  ProposeCombination
+
+	Player  <|-- MakerPlayer
+	Player  <|-- BreakerPlayer
+
+	MakerPlayer --> SecretCombination
+
+	BreakerPlayer --> ProposeCombination
+	BreakerPlayer --> Goal
+
+	Board *--> SecretCombination
+	Board o--> "0..10" ProposeCombination
+
+	Combination "5" *--> Position
+
+	Position "5" o--> Color
+
+	Color <|-- White
+	Color <|-- Black
+	Color <|-- Red
+	Color <|-- Blue
+	Color <|-- Yellow
+	Color <|-- Green
+	Color <|-- Orange
+	Color <|-- Purple
+
+	Check *--> Result
+	Check --> Position
+
+	Result <|-- Winner
+	Result --> White
+	Result --> Black
+
+	Winner --> Goal
+	Winner "5" *--> Black
+@enduml
