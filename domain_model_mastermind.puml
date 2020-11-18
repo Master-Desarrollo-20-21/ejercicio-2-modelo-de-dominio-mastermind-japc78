@@ -67,8 +67,8 @@
 	Check --> Position
 
 	Result <|-- Winner
-	Result --> White
-	Result --> Black
+	Result  o--> "0..5" White
+	Result  o--> "0..5" Black
 
 	Winner --> Goal
 	Winner "5" *--> Black
